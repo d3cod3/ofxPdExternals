@@ -1,52 +1,36 @@
-# Prerequisites
-*.d
+# QtCreator
+*.qbs.user
+*.pro.user
+*.pri
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Linux
+*~
+# KDE
+.directory
+.AppleDouble
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# OSX
+.DS_Store
+*.swp
+*~.nib
+# Thumbnails
+._*
 
-# Precompiled Headers
-*.gch
-*.pch
+# Windows
+# Windows image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+#########################
+# miscellaneous
+#########################
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
+.mailmap
 *.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+*.dSYM
+ofxPdExternals_example/bin/.tmp
+bin/.tmp
+obj/
+**/build-ofxPdExternals_example-Desktop-Debug
+**/build-ofxPdExternals_example-Desktop-Release
