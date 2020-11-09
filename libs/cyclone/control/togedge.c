@@ -25,17 +25,22 @@ static void togedge_bang(t_togedge *x){
 }
 
 static void togedge_float(t_togedge *x, t_float f){
-    int i = f != 0;
-    if(x->x_wason){
-        if (!i){
-            x->x_wason = 0;
-            outlet_bang(x->x_out1);
-        }
+    if((int)f != f){
+        pd_error(x, "[togedge]: doesn't deal with non integer floats");
     }
     else{
-        if(i){
-            x->x_wason = 1;
-            outlet_bang(((t_object *)x)->ob_outlet);
+        int i = f != 0;
+        if(x->x_wason){
+            if (!i){
+                x->x_wason = 0;
+                outlet_bang(x->x_out1);
+            }
+        }
+        else{
+            if(i){
+                x->x_wason = 1;
+                outlet_bang(((t_object *)x)->ob_outlet);
+            }
         }
     }
 }
@@ -51,12 +56,16 @@ static void *togedge_new(void){
 CYCLONE_OBJ_API void togedge_setup(void){
     togedge_class = class_new(gensym("togedge"),
         (t_newmethod)togedge_new, 0, sizeof(t_togedge), 0, 0);
-    class_addcreator((t_newmethod)togedge_new, gensym("TogEdge"), 0, 0);
-    class_addcreator((t_newmethod)togedge_new, gensym("cyclone/TogEdge"), 0, 0);
     class_addbang(togedge_class, togedge_bang);
     class_addfloat(togedge_class, togedge_float);
 }
 
-void TogEdge_setup(void){
-    togedge_setup();
+CYCLONE_OBJ_API void TogEdge_setup(void){
+    togedge_class = class_new(gensym("TogEdge"),
+        (t_newmethod)togedge_new, 0, sizeof(t_togedge), 0, 0);
+    class_addcreator((t_newmethod)togedge_new, gensym("cyclone/TogEdge"), 0);
+    class_addbang(togedge_class, togedge_bang);
+    class_addfloat(togedge_class, togedge_float);
+    pd_error(togedge_class, "Cyclone: please use [togedge] instead of [TogEdge] to supress this error");
+    class_sethelpsymbol(togedge_class, gensym("togedge"));
 }
