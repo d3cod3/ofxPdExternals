@@ -11,7 +11,7 @@
 // Porres cleaned up, rewrote and reorganized lots of thnigs and updated comment 2018-2020
 
 #include <common/api.h>
-#include <control/s_utf8.h>
+#include "s_utf8.h"
 #include "m_pd.h"
 #include "g_canvas.h"
 #include <string.h>
