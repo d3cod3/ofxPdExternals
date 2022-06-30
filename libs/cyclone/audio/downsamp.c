@@ -2,6 +2,7 @@
 
 #include "m_pd.h"
 #include <common/api.h>
+#include <math.h>
 
 static t_class *downsamp_class;
 
